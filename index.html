@@ -1,0 +1,865 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Porady finansowe i inwestycyjne od ekspertów. Dowiedz się, jak zarządzać finansami i mądrze inwestować.">
+    <meta name="robots" content="index, follow">
+    <title>Doradca Finansowy - Eksperckie Porady Inwestycyjne i Finansowe</title>
+    <style>
+        /* Cookie Consent Popup Styles */
+#cookieConsentPopup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    display: none; /* Ukryte domyślnie */
+}
+
+#cookieConsentPopup p {
+    margin-bottom: 15px;
+}
+
+#cookieConsentPopup button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+#cookieConsentPopup button:hover {
+    background-color: var(--primary-color);
+}
+
+        :root {
+            --primary-color: #3a7bd5;
+            --secondary-color: #00d2ff;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --border-radius: 5px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links .active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Ad Placeholders - USUNIĘTO */
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2rem;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 0;
+        }
+
+        .article {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .article h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .article h4 {
+            color: var(--dark-bg);
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .article p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .article-img {
+            width: 100%;
+            height: 250px;
+            background-color: var(--light-bg);
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .article-img svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .img-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            height: 100%;
+            width: 100%;
+        }
+
+        .img-placeholder svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            fill: #888;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .footer-section {
+                flex: 0 0 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 5rem;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-section {
+                flex: 0 0 100%;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .article {
+                padding: 1rem;
+            }
+
+            .article-img {
+                height: 200px;
+            }
+
+            * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+        }
+    </style>
+    <!-- Google AdSense Script -->
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7800454320594916"
+     crossorigin="anonymous"></script> 
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Doradca Finansowy</a>
+            <div class="tagline">Twoja Droga do Wolności Finansowej</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Strona Główna</a></li>
+                <li><a href="#investment-tips">Porady Inwestycyjne</a></li>
+                <li><a href="#crypto-news">Wiadomości Crypto</a></li>
+                <li><a href="#financial-planning">Planowanie Finansowe</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home" class="section">
+                <div class="section-header">
+                    <h2>Witaj w Doradcy Finansowym</h2>
+                </div>
+                <p>Odkryj eksperckie porady dotyczące finansów osobistych, inwestowania i strategii budowania bogactwa. Naszym celem jest pomóc Ci poruszać się w złożonym świecie finansów i podejmować świadome decyzje, które zabezpieczą Twoją finansową przyszłość.</p>
+
+
+            </section>
+
+            <!-- Investment Tips Section -->
+            <section id="investment-tips" class="section">
+                <div class="section-header">
+                    <h2>Porady Inwestycyjne</h2>
+                </div>
+
+                <article class="article">
+                    <h3>Podstawy Inwestowania</h3>
+
+                    <div class="article-img">
+                        <div class="img-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
+                                <path d="M15 19v-8h2v8h-2zm-4 0v-5h2v5h-2zm-4 0v-2h2v2H7zm-2-4h2v-2H5v2zm2-2H5v-2h2v2zm12-2h-2v-2h2v2zm-4-2h-2v2h2V7zm-4 2h-2v2h2V9z"/>
+                            </svg>
+                            <span alt="Wykres giełdowy">wykres giełdowy</span>
+                        </div>
+                    </div>
+
+                    <p>Inwestowanie polega na wykorzystaniu pieniędzy do pracy na Twoją korzyść. Zamiast trzymać gotówkę bezczynnie, inwestowanie pozwala Twoim pieniądzom rosnąć w czasie, pomagając budować bogactwo i osiągać cele finansowe.</p>
+
+                    <h4>1. Zrozumienie Różnych Rodzajów Inwestycji</h4>
+                    <p>Istnieją różne instrumenty inwestycyjne, z których każdy ma inny poziom ryzyka i potencjalne zwroty:</p>
+                    <ul>
+                        <li><strong>Akcje:</strong> Udziały własnościowe w spółkach</li>
+                        <li><strong>Obligacje:</strong> Papiery dłużne emitowane przez korporacje lub rządy</li>
+                        <li><strong>Fundusze Inwestycyjne:</strong> Profesjonalne zarządzanie pieniędzmi, które łączy fundusze od wielu inwestorów</li>
+                        <li><strong>ETFy:</strong> Fundusze giełdowe, które śledzą indeksy, surowce lub koszyki aktywów</li>
+                        <li><strong>Nieruchomości:</strong> Inwestycje w nieruchomości</li>
+                    </ul>
+
+                    <h4>2. Ocena Ryzyka i Nagrody</h4>
+                    <p>Wyższe potencjalne zwroty zazwyczaj wiążą się z wyższym ryzykiem. Zrozumienie Twojej tolerancji na ryzyko jest kluczowe dla stworzenia zrównoważonego portfela inwestycyjnego, który pomoże Ci spać spokojnie, jednocześnie powiększając Twoje bogactwo.</p>
+
+                    <h4>3. Zacznij Wcześnie i Bądź Konsekwentny</h4>
+                    <p>Potęga procentu składanego oznacza, że nawet niewielkie kwoty regularnie inwestowane przez długi czas mogą znacznie wzrosnąć. Im wcześniej zaczniesz, tym więcej czasu Twoje pieniądze mają na wzrost.</p>
+
+                    <h4>4. Zdywersyfikuj Swój Portfel</h4>
+                    <p>Nie wkładaj wszystkich jajek do jednego koszyka. Rozproszenie inwestycji na różne klasy aktywów pomaga zmniejszyć ryzyko i może poprawić ogólne zwroty.</p>
+                </article>
+
+
+            </section>
+
+            <!-- Financial Planning Section -->
+            <section id="financial-planning" class="section">
+                <div class="section-header">
+                    <h2>Planowanie Finansowe</h2>
+                </div>
+
+                <article class="article">
+                    <h3>Jak Zacząć Oszczędzać na Emeryturę</h3>
+
+                    <div class="article-img">
+                        <div class="img-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span alt="Osoba oszczędzająca pieniądze">osoba oszczędzająca pieniądze</span>
+                        </div>
+                    </div>
+
+                    <p>Emerytura może wydawać się odległa, ale wczesne rozpoczęcie oszczędzania robi ogromną różnicę. Im wcześniej zaczniesz, tym mniej będziesz musiał/a oszczędzać co miesiąc, aby osiągnąć swoje cele, dzięki potędze procentu składanego.</p>
+
+                    <h4>1. Zrozumienie Kont Emerytalnych</h4>
+                    <p>Skorzystaj z kont emerytalnych z korzyściami podatkowymi:</p>
+                    <ul>
+                        <li><strong>401(k) / 403(b):</strong> Plany sponsorowane przez pracodawcę, często z dopłatami od pracodawcy</li>
+                        <li><strong>Tradycyjny IRA:</strong> Wzrost z odroczeniem podatku do momentu wypłaty</li>
+                        <li><strong>Roth IRA:</strong> Wpłaty po opodatkowaniu z wolnym od podatku wzrostem i wypłatami</li>
+                        <li><strong>SEP IRA / Solo 401(k):</strong> Opcje dla osób samozatrudnionych</li>
+                    </ul>
+
+                    <h4>2. Oblicz Swoje Potrzeby Emerytalne</h4>
+                    <p>Większość ekspertów finansowych sugeruje, że będziesz potrzebować 70-80% swojego dochodu przedemerytalnego, aby utrzymać swój standard życia na emeryturze. Użyj kalkulatorów emerytalnych, aby oszacować swój osobisty cel.</p>
+
+                    <h4>3. Stwórz Konsekwentną Strategię Oszczędzania</h4>
+                    <p>Zautomatyzuj swoje oszczędności, ustawiając regularne przelewy na swoje konta emerytalne. Staraj się oszczędzać co najmniej 15% swoich dochodów, wliczając w to wszelkie dopłaty od pracodawcy.</p>
+
+                    <h4>4. Skorzystaj z Dopłat Pracodawcy</h4>
+                    <p>Jeśli Twój pracodawca oferuje dopłaty do Twojego planu emerytalnego, wpłacaj co najmniej tyle, aby otrzymać pełną dopłatę. To zasadniczo darmowe pieniądze, które mogą znacząco zwiększyć Twoje oszczędności emerytalne.</p>
+
+                    <h4>5. Zwiększaj Wpłaty z Czasem</h4>
+                    <p>Kiedy otrzymujesz podwyżki lub premie, rozważ zwiększenie swoich wpłat emerytalnych, zanim dostosujesz swój styl życia. Podejście "oszczędzaj więcej jutro" zobowiązuje Cię do oszczędzania więcej w miarę wzrostu Twoich dochodów.</p>
+                </article>
+            </section>
+
+            <!-- Crypto News Section -->
+            <section id="crypto-news" class="section">
+                <div class="section-header">
+                    <h2>Wiadomości Crypto</h2>
+                </div>
+
+                <article class="article">
+                    <h3>Zrozumienie Inwestycji w Kryptowaluty</h3>
+
+                    <div class="article-img">
+                        <div class="img-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M17.06 11.57c.59-.69.94-1.59.94-2.57 0-1.86-1.27-3.43-3-3.87V3h-2v2h-2V3H9v2H6v2h2v10H6v2h3v2h2v-2h2v2h2v-2c2.21 0 4-1.79 4-4 0-1.45-.78-2.73-1.94-3.43zM10 7h4c1.1 0 2 .9 2 2s-.9 2-2 2h-4V7zm5 10h-5v-4h5c1.1 0 2 .9 2 2s-.9 2-2 2z"/>
+                            </svg>
+                            <span alt="Kryptowaluta">kryptowaluta</span>
+                        </div>
+                    </div>
+
+                    <p>Kryptowaluty reprezentują nową i zmienną klasę aktywów, która w ostatnich latach zyskała znaczną uwagę. Przed inwestycją ważne jest zrozumienie podstaw i związanego z nią ryzyka.</p>
+
+                    <h4>Czym są Kryptowaluty?</h4>
+                    <p>Kryptowaluty to cyfrowe lub wirtualne waluty, które wykorzystują kryptografię do bezpieczeństwa, działają w oparciu o technologię blockchain i zazwyczaj funkcjonują bez centralnego organu, takiego jak rząd lub bank.</p>
+
+                    <h4>Kluczowe Kwestie dla Inwestorów Crypto</h4>
+                    <ul>
+                        <li><strong>Wysoka Zmienność:</strong> Ceny kryptowalut mogą dramatycznie wahać się w krótkich okresach</li>
+                        <li><strong>Badania:</strong> Zrozum technologię, zastosowanie i zespół stojący za każdą kryptowalutą, w którą inwestujesz</li>
+                        <li><strong>Bezpieczeństwo:</strong> Dowiedz się o właściwych metodach przechowywania, w tym o portfelach sprzętowych</li>
+                        <li><strong>Dywersyfikacja:</strong> Nie umieszczaj wszystkich swoich funduszy inwestycyjnych w kryptowalutach</li>
+                        <li><strong>Implikacje Podatkowe:</strong> Bądź świadomy wymagań podatkowych dotyczących transakcji kryptowalutowych</li>
+                    </ul>
+
+                    <p>Zawsze pamiętaj, że inwestycje w kryptowaluty powinny zazwyczaj stanowić tylko niewielką część dobrze zdywersyfikowanego portfela, szczególnie dla inwestorów unikających ryzyka.</p>
+                </article>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-header">
+                    <h2>Skontaktuj się z Nami</h2>
+                </div>
+
+                <p>Masz pytania dotyczące planowania finansowego lub inwestycji? Wypełnij poniższy formularz, a nasz zespół wkrótce się z Tobą skontaktuje.</p>
+
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/mpwpqvrq" method="POST">
+                        <div class="form-group">
+                            <label for="name">Twoje Imię i Nazwisko</label>
+                            <input type="text" id="name" name="names" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Adres Email</label>
+                            <input type="email" id="email" name="emails" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Temat</label>
+                            <input type="text" id="subject" name="subjects" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Twoja Wiadomość</label>
+                            <textarea id="message" class="form-control" name="messages" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">Wyślij Wiadomość</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Doradca Finansowy</h3>
+                    <p>Twoje zaufane źródło porad finansowych, wskazówek inwestycyjnych i strategii budowania trwałego bogactwa.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Szybkie Linki</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Strona Główna</a></li>
+                        <li><a href="#investment-tips">Porady Inwestycyjne</a></li>
+                        <li><a href="#crypto-news">Wiadomości Crypto</a></li>
+                        <li><a href="#financial-planning">Planowanie Finansowe</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Prawo</h3>
+                    <ul class="footer-links">
+                        <li><a href="polityka-prywatnosci.html">Polityka Prywatności</a></li>
+                        <li><a href="regulamin.html">Regulamin</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="polityka-cookies.html">Polityka Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2023 Doradca Finansowy. Wszelkie Prawa Zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </div>
+
+    <!-- Cookie Consent Popup -->
+<div id="cookieConsentPopup">
+    <p>Ta strona używa plików cookies, aby poprawić komfort użytkowania. Korzystając z niej, zgadzasz się na naszą <a href="polityka-cookies.html" style="color: var(--secondary-color); text-decoration: underline;">Politykę Cookies</a>.</p>
+    <button onclick="acceptCookies()">Akceptuję</button>
+    <button onclick="rejectCookies()">Odrzucam</button>
+</div>
+
+    <!-- JavaScript -->
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+
+                // Fix: Check if targetId is just '#' and skip processing in that case
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+
+        // Cookie Consent
+const cookieConsentPopup = document.getElementById('cookieConsentPopup');
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('cookieConsent')) {
+        cookieConsentPopup.style.display = 'block';
+    }
+});
+
+function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    cookieConsentPopup.style.display = 'none';
+    // Możesz tutaj dodać kod uruchamiający Google Analytics, AdSense itp.
+}
+
+function rejectCookies() {
+    localStorage.setItem('cookieConsent', 'rejected');
+    cookieConsentPopup.style.display = 'none';
+    // Możesz tutaj dodać kod blokujący Google Analytics, AdSense itp. (jeśli chcesz być bardziej restrykcyjny)
+    alert('Odrzuciłeś pliki cookies. Niektóre funkcje strony mogą nie działać poprawnie.'); // Opcjonalne powiadomienie
+}
+
+// Replace the image placeholders with actual images
+document.addEventListener('DOMContentLoaded', function() {
+  const placeholders = document.querySelectorAll('.img-placeholder');
+
+  // Replace placeholders with actual images
+  if (placeholders.length > 0) {
+    const imagePaths = ['gielda.jpg', 'osoba.jpg', 'crypto.jpg']; // Zmienione ścieżki tutaj!
+
+    placeholders.forEach((placeholder, index) => {
+      if (index < imagePaths.length) {
+        const img = document.createElement('img');
+        img.src = imagePaths[index];
+        img.alt = placeholder.querySelector('span').textContent;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+
+        const parent = placeholder.parentElement;
+        parent.replaceChild(img, placeholder);
+      }
+    });
+  }
+});
+    </script>
+</body>
+</html>
